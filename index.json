@@ -1,22 +1,45 @@
 
-{
-    "results": [
-      {
-        "instruments":{
-
-        "piano": {
-            "name": "piano",
-            "price": 200,
-            "description": "An easy to use and beginner friendly musical instrument."
-        },
-        "recorder": {
-            "name": "recorder",
-            "price": 60,
-            "description": "An easy to use and beginner friendly musical instrument."
-        },
-        "guitar": {
-            
-        }
-        }    
-    }]
+[
+    {
+        "id": 1,
+        "name": "Keyboard",
+        "desc": "",
+        "price": "",
+        "image": ""
+    },
+    {
+        "id": 2,
+        "name": "Recorder",
+        "desc": "",
+        "price": "",
+        "image": ""
+    },
+    {
+        "id": 3,
+        "name": "Guitar",
+        "desc": "",
+        "price": "",
+        "image": ""
+    },
+    {
+        "id": 4,
+        "name": "",
+        "desc": "",
+        "price": "",
+        "image": ""
+    },
+    {
+        "id": 5,
+        "name": "",
+        "desc": "",
+        "price": "",
+        "image": ""
+    },
+    {
+        "id": 6,
+        "name": "",
+        "desc": "",
+        "price": "",
+        "image": ""
     }
+]
