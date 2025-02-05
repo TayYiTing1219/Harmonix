@@ -1,0 +1,51 @@
+
+[
+    {
+        "id": 1,
+        "name": "Keyboard",
+        "desc": "A keyboard piano is a musical instrument with a set of keys that produce sound when pressed. It can be acoustic or electronic, with electronic versions offering a variety of sounds and effects.",
+        "price": 200,
+        "image": "assets/img/category_img_01.png",
+        "colour": "Black"
+    },
+    {
+        "id": 2,
+        "name": "Recorder",
+        "desc": "A recorder is a woodwind instrument with a simple, straight body and a mouthpiece called a whistle. It is played by blowing air through the mouthpiece while fingerings on the holes produce different notes.",
+        "price": 10,
+        "image": "assets/img/recorder.png",
+        "colour": "Beige"
+    },
+    {
+        "id": 3,
+        "name": "Guitar",
+        "desc": "A guitar is a stringed instrument with a body, neck, and usually six strings, played by plucking or strumming",
+        "price": 100,
+        "image": "assets/img/category_img_03.png",
+        "colour": "Brown"
+    },
+    {
+        "id": 4,
+        "name": "Ukelele",
+        "desc": "A ukulele is a small, four-stringed instrument from the guitar family. It has a light, bright sound and is typically played by strumming or plucking the strings.",
+        "price": 40,
+        "image": "assets/img/ukelele.png",
+        "colour": "Brown"
+    },
+    {
+        "id": 5,
+        "name": "Harmonica",
+        "desc": "A harmonica is a small, handheld wind instrument with metal reeds. It is played by blowing or drawing air through the holes, producing different pitches, and is commonly used in blues, rock, and folk music.",
+        "price": 30,
+        "image": "assets/img/harmonica.png",
+        "colour": "Beige"
+    },
+    {
+        "id": 6,
+        "name": "Tuba",
+        "desc": "A tuba is a large brass wind instrument with a deep, rich sound. It has a wide bell and is played by buzzing the lips into a mouthpiece while pressing valves to change pitch.",
+        "price": 80,
+        "image": "assets/img/tuba.png",
+        "colour": "Gold"
+    }
+]
