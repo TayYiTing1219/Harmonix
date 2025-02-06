@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Harmonix Shop - Product Listing Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="assets/img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/templatemo.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+<!-- TemplateMo 559 Zay Shop 
+https://templatemo.com/tm-559-zay-shop -->
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="submit-text text-center ">Thank You for Your Purchase!</h2>
+        <p class="text-center ">Your order has been processed successfully.</p>
+
+        <div class="order-summary mt-4">
+            <h3 class="">Order Summary:</h3>
+            <table class="table">
+                <thead>
+                    <tr class="">
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="order-summary-body" class="">
+                </tbody>
+                <tfoot>
+                    <tr class="">
+                        <td colspan="2" class="text-right"><b>Total:</b></td>
+                        <td id="order-total"><b>$0.00</b></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="text-center mt-4 ">
+            <p class="doubt ">If you have any questions about your order, please contact our support team.</p>
+            <a href="index.html" class="btn btn-primary">Return to Home</a>
+        </div>
+    </div>
+    <script>
+        const orderSummaryBody = document.getElementById('order-summary-body');
+        const orderTotalElement = document.getElementById('order-total');
+        let listProducts = [];
+    
+        const loadProducts = () => {
+            return fetch('products.json')
+                .then(response => response.json())
+                .then(data => {
+                    listProducts = data;
+                });
+        };
+    
+        loadProducts().then(() => {
+            const orderSummary = JSON.parse(sessionStorage.getItem('orderSummary'));
+            let total = 0;
+    
+            if (orderSummary && orderSummary.length > 0) {
+                orderSummary.forEach(cartItem => {  
+                    const product = listProducts.find(item => item.id == cartItem.product_id);
+                    if (product) {
+                        const itemTotal = product.price * cartItem.quantity;
+                        total += itemTotal;
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${product.name}</td> <!-- Use the found product's name -->
+                            <td>${cartItem.quantity}</td>
+                            <td>$${itemTotal.toFixed(2)}</td>
+                        `;
+                        orderSummaryBody.appendChild(row);
+                    }
+                });
+                orderTotalElement.innerHTML = `<b>$${total.toFixed(2)}</b>`;
+            }
+    
+            sessionStorage.removeItem('orderSummary');
+        });
+    </script>
+<!-- Start Footer -->
+<footer class="bg-dark" id="tempaltemo_footer">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4 pt-5">
+                <h2 class="h2 text-success border-bottom pb-3 border-light logo">Harmonix</h2>
+                <ul class="list-unstyled text-light footer-link-list">
+                    <li>
+                        <i class="fas fa-map-marker-alt fa-fw"></i>
+                        535 Clementi Rd, Singapore 599489
+                    </li>
+                    <li>
+                        <i class="fa fa-phone fa-fw"></i>
+                        <a class="text-decoration-none" href="tel:+65 6466 6555">+65 6466 6555</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-envelope fa-fw"></i>
+                        <a class="text-decoration-none" href="mailto:admissions@np.edu.sg">admissions@np.edu.sg</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-4 pt-5">
+                <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
+                <ul class="list-unstyled text-light footer-link-list">
+                    <li><a class="text-decoration-none" href="#">Keyboard</a></li>
+                    <li><a class="text-decoration-none" href="#">Recorder</a></li>
+                    <li><a class="text-decoration-none" href="#">Guitar</a></li>
+                    <li><a class="text-decoration-none" href="#">Ukelele</a></li>
+                    <li><a class="text-decoration-none" href="#">Harmonica</a></li>
+                    <li><a class="text-decoration-none" href="#">Tuba</a></li>            
+                </ul>
+            </div>
+
+            <div class="col-md-4 pt-5">
+                <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
+                <ul class="list-unstyled text-light footer-link-list">
+                    <li><a class="text-decoration-none" href="#">Home</a></li>
+                    <li><a class="text-decoration-none" href="#">About Us</a></li>
+                    <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
+                    <li><a class="text-decoration-none" href="#">FAQs</a></li>
+                    <li><a class="text-decoration-none" href="#">Contact</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="row text-light mb-4">
+            <div class="col-12 mb-3">
+                <div class="w-100 my-3 border-top border-light"></div>
+            </div>
+            <div class="col-auto me-auto">
+                <ul class="list-inline text-left footer-icons">
+                    <li class="list-inline-item border border-light rounded-circle text-center">
+                        <a class="text-light text-decoration-none" target="_blank" href="http://facebook.com/"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                    </li>
+                    <li class="list-inline-item border border-light rounded-circle text-center">
+                        <a class="text-light text-decoration-none" target="_blank" href="https://www.instagram.com/"><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                    </li>
+                    <li class="list-inline-item border border-light rounded-circle text-center">
+                        <a class="text-light text-decoration-none" target="_blank" href="https://twitter.com/"><i class="fab fa-twitter fa-lg fa-fw"></i></a>
+                    </li>
+                    <li class="list-inline-item border border-light rounded-circle text-center">
+                        <a class="text-light text-decoration-none" target="_blank" href="https://www.linkedin.com/"><i class="fab fa-linkedin fa-lg fa-fw"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-auto">
+                <label class="sr-only" for="subscribeEmail">Email address</label>
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control bg-dark border-light" id="subscribeEmail" placeholder="Email address">
+                    <div class="input-group-text btn-success text-light">Subscribe</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-100 bg-black py-3">
+        <div class="container">
+            <div class="row pt-2">
+                <div class="col-12">
+                    <p class="text-left text-light">
+                        Copyright &copy; 2025 Harmonix 
+                        | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer>
+<!-- End Footer -->
+
+<!-- Start Script -->
+<script src="assets/js/jquery-1.11.0.min.js"></script>
+<script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/templatemo.js"></script>
+<script src="assets/js/custom.js"></script>
+<!-- End Script -->
+</body>
+
+</html>

@@ -1,3 +1,156 @@
 /*
 Custom Css
 */
+
+
+.form-group{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+/* Grid layout for the product list */
+.listProduct {
+    display: grid; /* Enables a grid layout */
+    grid-template-columns: repeat(3, 1fr); /* Four equally spaced columns */
+  }
+
+.item{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Styling for the cart sidebar */
+.cartTab {
+    padding-top: 90px; /* Adds spacing at the top */
+    width: 400px; /* Fixed width for the sidebar */
+    background-color: rgb(29, 22, 63); /* Black background color */
+    color: #eee; /* Light gray text color */
+    position: fixed; /* Fixes the sidebar position */
+    inset: 0 -400px 0 auto; /* Initially hidden off-screen */
+    display: grid; /* Grid layout for sections */
+    grid-template-rows: 70px 1fr 70px; /* Header, body, and footer sections */
+    transition: 0.5s; /* Smooth transition for toggling */
+    z-index: 1;
+  }
+  
+  /* Active state to show the cart */
+  body.showCart .cartTab {
+    inset: 0 0 0 auto; /* Moves the sidebar into view */
+  }
+  
+  /* Moves the main container when the cart is shown */
+  body .showCart .container {
+    transform: translateX(-250px);
+  }
+  
+  /* Header styling inside the cart */
+  .cartTab h2 {
+    padding: 20px; /* Inner spacing */
+    margin: 0; /* Removes default margin */
+    font-weight: 300; /* Light font weight */
+    display: block; /* Block-level element */
+  }
+  
+  /* Button container inside the cart */
+  .cartTab .btn {
+    display: grid; /* Grid layout for buttons */
+    grid-template-columns: repeat(2, 1fr); /* Two equally sized buttons */
+    padding: 10px; /* Inner spacing */
+  }
+  
+  /* Generic button styling */
+  .cartTab .btn button {
+    background-color: #E8BC0E; /* Yellow background for visibility */
+    border: none; /* Removes border */
+    font-weight: 500; /* Medium font weight */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  /* Close button styling */
+  .cartTab .btn .close {
+    background-color: #eee; /* Light gray background */
+    font-size: 25px; /* Large font size */
+  }
+  
+  /* Checkout button styling */
+  .cartTab .btn .checkOut {
+    font-size: 25px; /* Large font size */
+  }
+  
+  /* Product list inside the cart */
+  .cartTab .listCart .item img {
+    width: 100%; /* Full width for images */
+  }
+  
+  /* Layout for cart items */
+  .cartTab .listCart .item {
+    display: grid; /* Grid layout for items */
+    grid-template-columns: 70px 150px 50px 1fr; /* Image, name, quantity, and price */
+    gap: 10px; /* Spacing between columns */
+    text-align: center; /* Centers text */
+    align-items: center; /* Centers content vertically */
+    padding: 10px; /* Inner spacing */
+  }
+  
+  /* Styling for item names */
+  .cartTab .listCart .name {
+    font-family: "Delicious Handrawn", serif; /* Decorative font */
+    font-weight: 400; /* Normal weight */
+    font-style: normal; /* Default style */
+  }
+  
+  /* Styling for total prices */
+  .cartTab .listCart .totalPrice {
+    font-family: "Dongle", sans-serif; /* Consistent font family */
+    font-weight: 400;
+    font-style: normal;
+    font-size: 25px; /* Medium font size */
+  }
+  
+  /* Quantity control styling */
+  .listCart .quantity {
+    display: flex; /* Enables flexbox layout */
+    justify-content: center; /* Centers content horizontally */
+    font-family: "Dongle", sans-serif; /* Consistent font family */
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  /* Styling for quantity buttons */
+  .listCart .quantity span {
+    display: inline-block; /* Inline but behaves like a block */
+    width: 25px; /* Fixed width */
+    height: 25px; /* Fixed height */
+    background-color: #eee; /* Light gray background */
+    color: #555; /* Dark gray text */
+    border-radius: 50%; /* Circular shape */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 24px; /* Large font size */
+  }
+  
+  /* Transparent styling for inactive quantity button */
+  .listCart .quantity span:nth-child(2) {
+    background-color: transparent;
+    color: #eee; /* Matches background for invisibility */
+  }
+  
+  /* Styling for alternating item backgrounds */
+  .listCart .item:nth-child(even) {
+    background-color: rgba(210, 210, 210, 0.533); /* Light gray background with transparency */
+  }
+  
+  /* Enables scrolling for the cart item list */
+  .listCart {
+    overflow: auto; /* Allows scrolling when content overflows */
+  }
+  
+  /* Hides the scrollbar */
+  .listCart::-webkit-scrollbar {
+    width: 0;
+  }
+  
+  /* Adds rounded corners to cart images */
+  .cartTab .listCart img {
+    border-radius: 8px; /* Small corner rounding */
+  }
