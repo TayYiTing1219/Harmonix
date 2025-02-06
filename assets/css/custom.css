@@ -20,11 +20,15 @@ Custom Css
     padding-right: 20px;
 }
 
+.icon-cart{
+    cursor: pointer;
+}
+
 /* Styling for the cart sidebar */
 .cartTab {
-    padding-top: 90px; /* Adds spacing at the top */
+    padding-top: 40px; /* Adds spacing at the top */
     width: 400px; /* Fixed width for the sidebar */
-    background-color: rgb(29, 22, 63); /* Black background color */
+    background-color:#212934; /* Black background color */
     color: #eee; /* Light gray text color */
     position: fixed; /* Fixes the sidebar position */
     inset: 0 -400px 0 auto; /* Initially hidden off-screen */
@@ -61,7 +65,7 @@ Custom Css
   
   /* Generic button styling */
   .cartTab .btn button {
-    background-color: #E8BC0E; /* Yellow background for visibility */
+    background-color: #64c46c; /* Yellow background for visibility */
     border: none; /* Removes border */
     font-weight: 500; /* Medium font weight */
     cursor: pointer; /* Pointer cursor on hover */
@@ -70,12 +74,12 @@ Custom Css
   /* Close button styling */
   .cartTab .btn .close {
     background-color: #eee; /* Light gray background */
-    font-size: 25px; /* Large font size */
+    font-size: 20px; /* Large font size */
   }
   
   /* Checkout button styling */
   .cartTab .btn .checkOut {
-    font-size: 25px; /* Large font size */
+    font-size: 20px; /* Large font size */
   }
   
   /* Product list inside the cart */
@@ -95,38 +99,31 @@ Custom Css
   
   /* Styling for item names */
   .cartTab .listCart .name {
-    font-family: "Delicious Handrawn", serif; /* Decorative font */
-    font-weight: 400; /* Normal weight */
     font-style: normal; /* Default style */
   }
   
   /* Styling for total prices */
   .cartTab .listCart .totalPrice {
-    font-family: "Dongle", sans-serif; /* Consistent font family */
-    font-weight: 400;
-    font-style: normal;
-    font-size: 25px; /* Medium font size */
+    font-size: 20px; /* Medium font size */
   }
   
   /* Quantity control styling */
   .listCart .quantity {
     display: flex; /* Enables flexbox layout */
     justify-content: center; /* Centers content horizontally */
-    font-family: "Dongle", sans-serif; /* Consistent font family */
-    font-weight: 400;
-    font-style: normal;
+    font-size: 20px;
   }
   
   /* Styling for quantity buttons */
   .listCart .quantity span {
     display: inline-block; /* Inline but behaves like a block */
-    width: 25px; /* Fixed width */
-    height: 25px; /* Fixed height */
+    width: 24px; /* Fixed width */
+    height: 24px; /* Fixed height */
     background-color: #eee; /* Light gray background */
-    color: #555; /* Dark gray text */
+    color: #272626; /* Dark gray text */
     border-radius: 50%; /* Circular shape */
     cursor: pointer; /* Pointer cursor on hover */
-    font-size: 24px; /* Large font size */
+    font-size: 20px; /* Large font size */
   }
   
   /* Transparent styling for inactive quantity button */
@@ -137,7 +134,7 @@ Custom Css
   
   /* Styling for alternating item backgrounds */
   .listCart .item:nth-child(even) {
-    background-color: rgba(210, 210, 210, 0.533); /* Light gray background with transparency */
+    background-color: rgba(107, 107, 107, 0.533); /* Light gray background with transparency */
   }
   
   /* Enables scrolling for the cart item list */
@@ -154,3 +151,12 @@ Custom Css
   .cartTab .listCart img {
     border-radius: 8px; /* Small corner rounding */
   }
+
+.btn-primary{
+    background-color: #56ae6c;
+}
+
+
+.inquiry{
+    padding-bottom: 20px;
+}

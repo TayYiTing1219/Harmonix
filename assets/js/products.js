@@ -31,7 +31,7 @@ const addDatatoHTML = () => {
                             <ul class="list-unstyled">
                                 <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
                                 <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                                <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+                                <li><a class="btn btn-success text-white mt-2 addCart"><i class="fas fa-cart-plus"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -43,7 +43,10 @@ const addDatatoHTML = () => {
                         </ul>
                         <p class="price mb-0">$${product.price}</p>
                     </div>
-                </div>`
+                    
+                </div>
+                <button class="addCart">Add To Cart</button>
+                `
             ;
             listProductHTML.appendChild(newProduct);
         })
