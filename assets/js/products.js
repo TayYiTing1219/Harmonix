@@ -24,7 +24,12 @@ const addDatatoHTML = () => {
             newProduct.classList.add("item");
             newProduct.dataset.id = product.id;
             newProduct.innerHTML = `
+<<<<<<< HEAD
+            <button class="addCart">Add To Cart</button>
+                <div class="card mb-4 product-wap rounded-0 ">
+=======
                 <div class="card mb-4 product-wap rounded-0">
+>>>>>>> 8b01863f32b4ea6a4122030a5f0b16ceaa7683db
                     <div class="card rounded-0">
                         <img class="card-img rounded-0 img-fluid" src="${product.image}">
                         <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
@@ -45,8 +50,8 @@ const addDatatoHTML = () => {
                         <button class="btn btn-success w-100 addCart"><i class="fas fa-cart-plus"></i> Add To Cart</button>
                     </div>
                 </div>
+                <button class="addCart">Add To Cart</button>
             `;
-
             listProductHTML.appendChild(newProduct);
         });
     }
