@@ -234,8 +234,8 @@ https://templatemo.com/tm-559-Zay-shop
                 <div class="col-lg-7 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h1 class="h2">Keyboard</h1>
-                            <p class="h3 py-2">$200.00</p>
+                            <h1 class="h2 product-title"></h1> <!-- Product Name -->
+                            <p class="h3 py-2 product-price"></p> <!-- Product Price -->
                             <p class="py-2">
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
@@ -252,17 +252,20 @@ https://templatemo.com/tm-559-Zay-shop
                                     <p class="text-muted"><strong>BigFun</strong></p>
                                 </li>
                             </ul>
-
+                        
                             <h6>Description:</h6>
-                            <p>A keyboard piano is a musical instrument with a set of keys that produce sound when pressed. It can be acoustic or electronic, with electronic versions offering a variety of sounds and effects. This version has many buttons and options you can choose to change the way your keyboard sounds. If you dislike the normal piano sound and want to try something different, this keyboard is for you!</p>
+                            <p class="product-desc"></p> <!-- Product Description -->
+                            
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <h6>Avaliable Color :</h6>
+                                    <h6>Available Color :</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p class="text-muted"><strong>Black</strong></p>
+                                    <p class="text-muted"><strong class="product-colour"></strong></p> <!-- Product Colour -->
                                 </li>
                             </ul>
+                        </div>
+                        
                             <form action="" method="GET">
                                 <input type="hidden" name="product-title" value="Activewear">
                                 <div class="row">
@@ -442,6 +445,34 @@ https://templatemo.com/tm-559-Zay-shop
             ]
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get product ID from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get("id");
+        
+            if (productId) {
+                fetch("products.json")
+                    .then(response => response.json())
+                    .then(products => {
+                        const product = products.find(p => p.id == productId);
+                        if (product) {
+                            // Update page content
+                            document.querySelector(".product-title").textContent = product.name;
+                            document.querySelector(".product-desc").textContent = product.desc;
+                            document.querySelector(".product-price").textContent = `$${product.price}`;
+                            document.querySelector(".product-image").src = product.image;
+                            document.querySelector(".product-colour").textContent = product.colour;
+                        } else {
+                            document.querySelector(".container").innerHTML = "<h2>Product not found</h2>";
+                        }
+                    })
+                    .catch(error => console.error("Error loading product:", error));
+            } else {
+                document.querySelector(".container").innerHTML = "<h2>No product selected</h2>";
+            }
+        });
+        </script>        
     <!-- End Slider Script -->
 
 </body>
