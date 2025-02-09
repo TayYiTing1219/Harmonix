@@ -35,16 +35,18 @@ const addDatatoHTML = () => {
                             </ul>
                         </div>
                     </div>
-                    <div class="card-body">
+
+                    <div class="card-body text-center">
                         <a href="shop-single.html?id=${product.id}" class="h3 text-decoration-none">${product.name}</a>
                         <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                             <li class="">Colour: ${product.colour}</li>
                         </ul>
-                        <p class="price mb-0">$${product.price}</p>
+                        <p class="price mb-3">$${product.price}</p>
+                        <button class="btn btn-success w-100 addCart"><i class="fas fa-cart-plus"></i> Add To Cart</button>
                     </div>
                 </div>
-                <button class="addCart">Add To Cart</button>
             `;
+
             listProductHTML.appendChild(newProduct);
         });
     }
