@@ -11,13 +11,12 @@ let listProducts = [];
 let carts = [];
 
 iconCart.addEventListener("click", () => {
-    cartTab.classList.toggle("show");
+    cartTab.classList.toggle("showCart");
 });
 
 closeCart.addEventListener("click", () => {
-    cartTab.classList.remove("show");
+    cartTab.classList.remove("showCart");
 });
-
 
 const addDatatoHTML = () => {
     listProductHTML.innerHTML = "";
@@ -83,11 +82,11 @@ const addToCart = (productId) => {
         });
     }
 
-    updateCartDisplay();
-    saveCartToLocalStorage();
+    addCartToHTML();
+    addCartToMemory();
 };
 
-const saveCartToLocalStorage = () => {
+const addCartToMemory = () => {
     localStorage.setItem("cart", JSON.stringify(carts));
 };
 
@@ -95,14 +94,11 @@ const saveCartToLocalStorage = () => {
 document.addEventListener("DOMContentLoaded", () => {
     if (localStorage.getItem("cart")) {
         carts = JSON.parse(localStorage.getItem("cart"));
-        updateCartDisplay();
+        addCartToHTML();
     }
 });
 
-const addCartToMemory = () => {
-    localStorage.setItem('cart', JSON.stringify(carts));
-}
-const updateCartDisplay = () => {
+const addCartToHTML = () => {
     listCartHTML.innerHTML = "";
     let totalQuantity = 0;
 
@@ -117,7 +113,7 @@ const updateCartDisplay = () => {
                         <h5 class="cart-item-name">${cartItem.name}</h5>
                         <p class="cart-item-price">$${cartItem.price}</p>
                         <div class="cart-item-quantity">
-                            <button class="btn btn-sm btn-outline-danger minus" data-id="${cartItem.product_id}">−</button>
+                            <button class="btn btn-sm btn-outline-danger minus" data-id="${cartItem.product_id}">-</button>
                             <span class="cart-qty">${cartItem.quantity}</span>
                             <button class="btn btn-sm btn-outline-success plus" data-id="${cartItem.product_id}">+</button>
                         </div>
@@ -177,7 +173,7 @@ const clearCart = () => {
     localStorage.removeItem('cart');
     addCartToHTML();
     iconCartSpan.innerText = 0;
-    body.classList.remove('showCart');
+    cartTab.classList.remove('showCart');
     window.location.href = 'payment.html';
 };
 
