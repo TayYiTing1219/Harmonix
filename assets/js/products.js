@@ -24,6 +24,7 @@ const addDatatoHTML = () => {
             newProduct.classList.add('item');
             newProduct.dataset.id = product.id;
             newProduct.innerHTML = `
+            <button class="addCart">Add To Cart</button>
                 <div class="card mb-4 product-wap rounded-0 ">
                     <div class="card rounded-0">
                         <img class="card-img rounded-0 img-fluid" src="${product.image}">
@@ -45,7 +46,7 @@ const addDatatoHTML = () => {
                     </div>
                     
                 </div>
-                <button class="addCart">Add To Cart</button>
+                
                 `
             ;
             listProductHTML.appendChild(newProduct);
