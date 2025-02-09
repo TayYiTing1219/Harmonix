@@ -100,6 +100,9 @@ try to fill out the payment form
 
 payment will go through
 
+Github Page:
+https://github.com/TayYiTing1219/Harmonix.git
+
 Credits:
 
 Media:
