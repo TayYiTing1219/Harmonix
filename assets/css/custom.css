@@ -35,6 +35,80 @@ Custom Css
   text-align: center;
 }
 
+/* Cart container */
+.cartTab {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 350px;
+  height: 100vh;
+  background: white;
+  box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.cartTab.show {
+  transform: translateX(0);
+}
+
+/* Cart item container */
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 0;
+}
+
+/* Cart item image */
+.cart-item-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Cart item details */
+.cart-item-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Product name */
+.cart-item-name {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Product price */
+.cart-item-price {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Quantity buttons */
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-item-quantity button {
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+/* Checkout & Close buttons */
+.cartTab .btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
 /* Grid layout for the product list */
 .listProduct {
     display: grid; /* Enables a grid layout */

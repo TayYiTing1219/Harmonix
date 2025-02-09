@@ -5,16 +5,19 @@ let listProductHTML = document.querySelector('.listProduct');
 let listCartHTML = document.querySelector('.listCart');
 let iconCartSpan = document.querySelector('.icon-cart span');
 let checkOutButton = document.querySelector('.checkOut');
+let cartTab = document.querySelector(".cartTab");
 
 let listProducts = [];
 let carts = [];
 
-iconCart.addEventListener('click', () => {
-    body.classList.toggle('showCart');
-})
-closeCart.addEventListener('click', () => {
-    body.classList.toggle('showCart');
-})
+iconCart.addEventListener("click", () => {
+    cartTab.classList.toggle("show");
+});
+
+closeCart.addEventListener("click", () => {
+    cartTab.classList.remove("show");
+});
+
 
 const addDatatoHTML = () => {
     listProductHTML.innerHTML = "";
@@ -103,25 +106,35 @@ const updateCartDisplay = () => {
     listCartHTML.innerHTML = "";
     let totalQuantity = 0;
 
-    carts.forEach(cartItem => {
-        totalQuantity += cartItem.quantity;
+    if (carts.length > 0) {
+        carts.forEach(cartItem => {
+            totalQuantity += cartItem.quantity;
 
-        let cartHTML = `
-            <div class="cart-item">
-                <img src="${cartItem.image}" alt="${cartItem.name}">
-                <div class="cart-details">
-                    <h5>${cartItem.name}</h5>
-                    <p>Price: $${cartItem.price}</p>
-                    <p>Quantity: ${cartItem.quantity}</p>
+            let cartHTML = `
+                <div class="cart-item d-flex align-items-center p-2">
+                    <img src="${cartItem.image}" class="cart-item-img">
+                    <div class="cart-item-details">
+                        <h5 class="cart-item-name">${cartItem.name}</h5>
+                        <p class="cart-item-price">$${cartItem.price}</p>
+                        <div class="cart-item-quantity">
+                            <button class="btn btn-sm btn-outline-danger minus" data-id="${cartItem.product_id}">−</button>
+                            <span class="cart-qty">${cartItem.quantity}</span>
+                            <button class="btn btn-sm btn-outline-success plus" data-id="${cartItem.product_id}">+</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        `;
+                <hr>
+            `;
 
-        listCartHTML.innerHTML += cartHTML;
-    });
+            listCartHTML.innerHTML += cartHTML;
+        });
+    } else {
+        listCartHTML.innerHTML = `<p class="text-center">Your cart is empty.</p>`;
+    }
 
     iconCartSpan.innerText = totalQuantity;
 };
+
 listCartHTML.addEventListener('click', (event) => {
     let positionClick = event.target;
     if(positionClick.classList.contains('minus') || positionClick.classList.contains('plus')){
