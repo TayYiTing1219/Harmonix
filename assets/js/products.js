@@ -88,7 +88,7 @@ const saveCartToLocalStorage = () => {
     localStorage.setItem("cart", JSON.stringify(carts));
 };
 
-// ✅ Load the cart when the page starts
+// Load the cart when the page starts
 document.addEventListener("DOMContentLoaded", () => {
     if (localStorage.getItem("cart")) {
         carts = JSON.parse(localStorage.getItem("cart"));
