@@ -13,7 +13,7 @@
         "name": "Recorder",
         "desc": "A recorder is a woodwind instrument with a simple, straight body and a mouthpiece called a whistle. It is played by blowing air through the mouthpiece while fingerings on the holes produce different notes.",
         "price": 10.00,
-        "image": "assets/img/recorder.png",
+        "image": "assets/img/category_img_02.png",
         "colour": "Beige"
     },
     {
