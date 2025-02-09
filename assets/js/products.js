@@ -38,8 +38,8 @@ const addDatatoHTML = () => {
 
                     <div class="card-body text-center">
                         <a href="shop-single.html?id=${product.id}" class="h3 text-decoration-none">${product.name}</a>
-                        <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
-                            <li class="">Colour: ${product.colour}</li>
+                        <ul class="list-unstyled text-center mb-2">
+                            <li><strong>Colour:</strong> ${product.colour}</li>
                         </ul>
                         <p class="price mb-3">$${product.price}</p>
                         <button class="btn btn-success w-100 addCart"><i class="fas fa-cart-plus"></i> Add To Cart</button>
@@ -52,68 +52,76 @@ const addDatatoHTML = () => {
     }
 };
 
-listProductHTML.addEventListener('click', (event) => {
-    let positionClick = event.target;
-    if(positionClick.classList.contains('addCart')){
-        let product_id = positionClick.parentElement.dataset.id;
-        addToCart(product_id)
-    }
-})
+listProductHTML.addEventListener("click", (event) => {
+    let clickedElement = event.target;
+    
+    // Check if the clicked element is the "Add to Cart" button or icon
+    if (clickedElement.classList.contains("addCart") || clickedElement.closest(".addCart")) {
+        let productElement = clickedElement.closest(".item");
+        let productId = productElement.dataset.id;
 
-const addToCart = (product_id) => {
-    let positionThisProductInCart = carts.findIndex((value) => value.product_id == product_id);
-    if(carts.length <= 0){
-        carts = [{
-            product_id: product_id,
-            quantity: 1
-        }]
-    }else if(positionThisProductInCart < 0){
-        carts.push({
-            product_id: product_id,
-            quantity: 1
-        })
-    }else{
-        carts[positionThisProductInCart].quantity = carts[positionThisProductInCart].quantity + 1;
+        addToCart(productId);
     }
-    addCartToHTML();
-    addCartToMemory();
-}
+});
+
+const addToCart = (productId) => {
+    let product = listProducts.find((p) => p.id == productId);
+    let cartItemIndex = carts.findIndex((item) => item.product_id == productId);
+
+    if (cartItemIndex >= 0) {
+        carts[cartItemIndex].quantity += 1;
+    } else {
+        carts.push({
+            product_id: productId,
+            quantity: 1,
+            name: product.name,
+            price: product.price,
+            image: product.image
+        });
+    }
+
+    updateCartDisplay();
+    saveCartToLocalStorage();
+};
+
+const saveCartToLocalStorage = () => {
+    localStorage.setItem("cart", JSON.stringify(carts));
+};
+
+// ✅ Load the cart when the page starts
+document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("cart")) {
+        carts = JSON.parse(localStorage.getItem("cart"));
+        updateCartDisplay();
+    }
+});
+
 const addCartToMemory = () => {
     localStorage.setItem('cart', JSON.stringify(carts));
 }
-const addCartToHTML = () => {
-    listCartHTML.innerHTML = '';
+const updateCartDisplay = () => {
+    listCartHTML.innerHTML = "";
     let totalQuantity = 0;
-    if(carts.length > 0) {
-        carts.forEach(cart => {
-            totalQuantity += cart.quantity;
-            let newCart = document.createElement('div');
-            newCart.classList.add('item');
-            newCart.dataset.id = cart.product_id;
 
-            let positionProduct = listProducts.findIndex((value) => value.id == cart.product_id);
-            if (positionProduct !== -1) {
-                let info = listProducts[positionProduct];
-                newCart.innerHTML = `
-                    <div class="image">
-                        <img src="${info.image}" alt="">
-                    </div>
-                    <div class="name">${info.name}</div>
-                    <div class="totalPrice">$${info.price * cart.quantity}</div>
-                    <div class="quantity" data-id="${cart.product_id}">
-                        <span class="minus">-</span>
-                        <span>${cart.quantity}</span>
-                        <span class="plus">+</span>
-                    </div>
-                `;
-                listCartHTML.appendChild(newCart);
-            } else {
-                console.error(`Product with id ${cart.product_id} not found.`);
-            }
-        });
-    }
+    carts.forEach(cartItem => {
+        totalQuantity += cartItem.quantity;
+
+        let cartHTML = `
+            <div class="cart-item">
+                <img src="${cartItem.image}" alt="${cartItem.name}">
+                <div class="cart-details">
+                    <h5>${cartItem.name}</h5>
+                    <p>Price: $${cartItem.price}</p>
+                    <p>Quantity: ${cartItem.quantity}</p>
+                </div>
+            </div>
+        `;
+
+        listCartHTML.innerHTML += cartHTML;
+    });
+
     iconCartSpan.innerText = totalQuantity;
-}
+};
 listCartHTML.addEventListener('click', (event) => {
     let positionClick = event.target;
     if(positionClick.classList.contains('minus') || positionClick.classList.contains('plus')){

@@ -27,6 +27,13 @@ Custom Css
   background-color: #218838; /* Darker Green */
 }
 
+/* centerized the products */
+.card-body ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
 /* Grid layout for the product list */
 .listProduct {
