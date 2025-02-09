@@ -5,18 +5,16 @@ let listProductHTML = document.querySelector('.listProduct');
 let listCartHTML = document.querySelector('.listCart');
 let iconCartSpan = document.querySelector('.icon-cart span');
 let checkOutButton = document.querySelector('.checkOut');
-let cartTab = document.querySelector(".cartTab");
 
 let listProducts = [];
 let carts = [];
 
-iconCart.addEventListener("click", () => {
-    cartTab.classList.toggle("showCart");
-});
-
-closeCart.addEventListener("click", () => {
-    cartTab.classList.remove("showCart");
-});
+iconCart.addEventListener('click', () => {
+    body.classList.toggle('showCart');
+})
+closeCart.addEventListener('click', () => {
+    body.classList.toggle('showCart');
+})
 
 const addDatatoHTML = () => {
     listProductHTML.innerHTML = "";
@@ -48,89 +46,74 @@ const addDatatoHTML = () => {
                     </div>
                 </div>
             `;
-
             listProductHTML.appendChild(newProduct);
         });
     }
 };
 
-listProductHTML.addEventListener("click", (event) => {
-    let clickedElement = event.target;
-    
-    // Check if the clicked element is the "Add to Cart" button or icon
-    if (clickedElement.classList.contains("addCart") || clickedElement.closest(".addCart")) {
-        let productElement = clickedElement.closest(".item");
-        let productId = productElement.dataset.id;
-
-        addToCart(productId);
+listProductHTML.addEventListener('click', (event) => {
+    let positionClick = event.target;
+    if(positionClick.classList.contains('addCart') || positionClick.closest(".addCart")){
+        let productElement = positionClick.closest(".item")
+        let product_id = productElement.dataset.id;
+        addToCart(product_id)
     }
-});
+})
 
-const addToCart = (productId) => {
-    let product = listProducts.find((p) => p.id == productId);
-    let cartItemIndex = carts.findIndex((item) => item.product_id == productId);
-
-    if (cartItemIndex >= 0) {
-        carts[cartItemIndex].quantity += 1;
-    } else {
+const addToCart = (product_id) => {
+    let positionThisProductInCart = carts.findIndex((value) => value.product_id == product_id);
+    if(carts.length <= 0){
+        carts = [{
+            product_id: product_id,
+            quantity: 1
+        }]
+    }else if(positionThisProductInCart < 0){
         carts.push({
-            product_id: productId,
-            quantity: 1,
-            name: product.name,
-            price: product.price,
-            image: product.image
-        });
+            product_id: product_id,
+            quantity: 1
+        })
+    }else{
+        carts[positionThisProductInCart].quantity = carts[positionThisProductInCart].quantity + 1;
     }
-
     addCartToHTML();
     addCartToMemory();
-};
-
+}
 const addCartToMemory = () => {
-    localStorage.setItem("cart", JSON.stringify(carts));
-};
-
-// Load the cart when the page starts
-document.addEventListener("DOMContentLoaded", () => {
-    if (localStorage.getItem("cart")) {
-        carts = JSON.parse(localStorage.getItem("cart"));
-        addCartToHTML();
-    }
-});
-
+    localStorage.setItem('cart', JSON.stringify(carts));
+}
 const addCartToHTML = () => {
-    listCartHTML.innerHTML = "";
+    listCartHTML.innerHTML = '';
     let totalQuantity = 0;
+    if(carts.length > 0) {
+        carts.forEach(cart => {
+            totalQuantity += cart.quantity;
+            let newCart = document.createElement('div');
+            newCart.classList.add('item');
+            newCart.dataset.id = cart.product_id;
 
-    if (carts.length > 0) {
-        carts.forEach(cartItem => {
-            totalQuantity += cartItem.quantity;
-
-            let cartHTML = `
-                <div class="cart-item d-flex align-items-center p-2">
-                    <img src="${cartItem.image}" class="cart-item-img">
-                    <div class="cart-item-details">
-                        <h5 class="cart-item-name">${cartItem.name}</h5>
-                        <p class="cart-item-price">$${cartItem.price}</p>
-                        <div class="cart-item-quantity">
-                            <button class="btn btn-sm btn-outline-danger minus" data-id="${cartItem.product_id}">-</button>
-                            <span class="cart-qty">${cartItem.quantity}</span>
-                            <button class="btn btn-sm btn-outline-success plus" data-id="${cartItem.product_id}">+</button>
-                        </div>
+            let positionProduct = listProducts.findIndex((value) => value.id == cart.product_id);
+            if (positionProduct !== -1) {
+                let info = listProducts[positionProduct];
+                newCart.innerHTML = `
+                    <div class="image">
+                        <img src="${info.image}" alt="">
                     </div>
-                </div>
-                <hr>
-            `;
-
-            listCartHTML.innerHTML += cartHTML;
+                    <div class="name">${info.name}</div>
+                    <div class="totalPrice">$${info.price * cart.quantity}</div>
+                    <div class="quantity" data-id="${cart.product_id}">
+                        <span class="minus">-</span>
+                        <span>${cart.quantity}</span>
+                        <span class="plus">+</span>
+                    </div>
+                `;
+                listCartHTML.appendChild(newCart);
+            } else {
+                console.error(`Product with id ${cart.product_id} not found.`);
+            }
         });
-    } else {
-        listCartHTML.innerHTML = `<p class="text-center">Your cart is empty.</p>`;
     }
-
     iconCartSpan.innerText = totalQuantity;
-};
-
+}
 listCartHTML.addEventListener('click', (event) => {
     let positionClick = event.target;
     if(positionClick.classList.contains('minus') || positionClick.classList.contains('plus')){
@@ -173,7 +156,7 @@ const clearCart = () => {
     localStorage.removeItem('cart');
     addCartToHTML();
     iconCartSpan.innerText = 0;
-    cartTab.classList.remove('showCart');
+    body.classList.remove('showCart');
     window.location.href = 'payment.html';
 };
 

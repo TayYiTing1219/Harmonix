@@ -8,107 +8,6 @@ Custom Css
     margin-bottom: 20px;
 }
 
-/* styling for add to cart button */
-.addCart {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 5px;
-  border: none;
-  background-color: #28a745; /* Green */
-  color: white;
-  cursor: pointer;
-  transition: 0.3s ease-in-out;
-}
-
-.addCart:hover {
-  background-color: #218838; /* Darker Green */
-}
-
-/* centerized the products */
-.card-body ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-/* Cart container */
-.cartTab {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 350px;
-  height: 100vh;
-  background: white;
-  box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  overflow-y: auto;
-  transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
-  z-index: 1;
-}
-
-.cartTab.show {
-  transform: translateX(0);
-}
-
-/* Cart item container */
-.cart-item {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 10px 0;
-}
-
-/* Cart item image */
-.cart-item-img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 5px;
-}
-
-/* Cart item details */
-.cart-item-details {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-/* Product name */
-.cart-item-name {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
-}
-
-/* Product price */
-.cart-item-price {
-  font-size: 14px;
-  color: #666;
-}
-
-/* Quantity buttons */
-.cart-item-quantity {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.cart-item-quantity button {
-  padding: 5px 10px;
-  font-size: 14px;
-}
-
-/* Checkout & Close buttons */
-.cartTab .btn {
-  width: 100%;
-  margin-top: 10px;
-}
 
 /* Grid layout for the product list */
 .listProduct {
@@ -125,139 +24,152 @@ Custom Css
     cursor: pointer;
 }
 
+.animation{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.animation-home{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 588px;
+}
+
 /* Styling for the cart sidebar */
 .cartTab {
-  padding-top: 40px; /* Adds spacing at the top */
-  width: 400px; /* Fixed width for the sidebar */
-  background-color:#212934; /* Black background color */
-  color: #eee; /* Light gray text color */
-  position: fixed; /* Fixes the sidebar position */
-  inset: 0 -400px 0 auto; /* Initially hidden off-screen */
-  display: grid; /* Grid layout for sections */
-  grid-template-rows: 70px 1fr 70px; /* Header, body, and footer sections */
-  transition: 0.5s; /* Smooth transition for toggling */
-  z-index: 1;
-}
-
-/* Active state to show the cart */
-body.showCart .cartTab {
-  inset: 0 0 0 auto; /* Moves the sidebar into view */
-}
-
-/* Moves the main container when the cart is shown */
-body .showCart .container {
-  transform: translateX(-250px);
-}
-
-/* Header styling inside the cart */
-.cartTab h2 {
-  padding: 20px; /* Inner spacing */
-  margin: 0; /* Removes default margin */
-  font-weight: 300; /* Light font weight */
-  display: block; /* Block-level element */
-}
-
-/* Button container inside the cart */
-.cartTab .btn {
-  display: grid; /* Grid layout for buttons */
-  grid-template-columns: repeat(2, 1fr); /* Two equally sized buttons */
-  padding: 10px; /* Inner spacing */
-}
-
-/* Generic button styling */
-.cartTab .btn button {
-  background-color: #64c46c; /* Yellow background for visibility */
-  border: none; /* Removes border */
-  font-weight: 500; /* Medium font weight */
-  cursor: pointer; /* Pointer cursor on hover */
-}
-
-/* Close button styling */
-.cartTab .btn .close {
-  background-color: #eee; /* Light gray background */
-  font-size: 20px; /* Large font size */
-}
-
-/* Checkout button styling */
-.cartTab .btn .checkOut {
-  font-size: 20px; /* Large font size */
-}
-
-/* Product list inside the cart */
-.cartTab .listCart .item img {
-  width: 100%; /* Full width for images */
-}
-
-/* Layout for cart items */
-.cartTab .listCart .item {
-  display: grid; /* Grid layout for items */
-  grid-template-columns: 70px 150px 50px 1fr; /* Image, name, quantity, and price */
-  gap: 10px; /* Spacing between columns */
-  text-align: center; /* Centers text */
-  align-items: center; /* Centers content vertically */
-  padding: 10px; /* Inner spacing */
-}
-
-/* Styling for item names */
-.cartTab .listCart .name {
-  font-style: normal; /* Default style */
-}
-
-/* Styling for total prices */
-.cartTab .listCart .totalPrice {
-  font-size: 20px; /* Medium font size */
-}
-
-/* Quantity control styling */
-.listCart .quantity {
-  display: flex; /* Enables flexbox layout */
-  justify-content: center; /* Centers content horizontally */
-  font-size: 20px;
-}
-
-/* Styling for quantity buttons */
-.listCart .quantity span {
-  display: inline-block; /* Inline but behaves like a block */
-  width: 24px; /* Fixed width */
-  height: 24px; /* Fixed height */
-  background-color: #eee; /* Light gray background */
-  color: #272626; /* Dark gray text */
-  border-radius: 50%; /* Circular shape */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 20px; /* Large font size */
-}
-
-/* Transparent styling for inactive quantity button */
-.listCart .quantity span:nth-child(2) {
-  background-color: transparent;
-  color: #eee; /* Matches background for invisibility */
-}
-
-/* Styling for alternating item backgrounds */
-.listCart .item:nth-child(even) {
-  background-color: rgba(107, 107, 107, 0.533); /* Light gray background with transparency */
-}
-
-/* Enables scrolling for the cart item list */
-.listCart {
-  overflow: auto; /* Allows scrolling when content overflows */
-}
-
-/* Hides the scrollbar */
-.listCart::-webkit-scrollbar {
-  width: 0;
-}
-
-/* Adds rounded corners to cart images */
-.cartTab .listCart img {
-  border-radius: 8px; /* Small corner rounding */
-}
+    padding-top: 40px; /* Adds spacing at the top */
+    width: 400px; /* Fixed width for the sidebar */
+    background-color:#212934; /* Black background color */
+    color: #eee; /* Light gray text color */
+    position: fixed; /* Fixes the sidebar position */
+    inset: 0 -400px 0 auto; /* Initially hidden off-screen */
+    display: grid; /* Grid layout for sections */
+    grid-template-rows: 70px 1fr 70px; /* Header, body, and footer sections */
+    transition: 0.5s; /* Smooth transition for toggling */
+    z-index: 1;
+  }
+  
+  /* Active state to show the cart */
+  body.showCart .cartTab {
+    inset: 0 0 0 auto; /* Moves the sidebar into view */
+  }
+  
+  /* Moves the main container when the cart is shown */
+  body .showCart .container {
+    transform: translateX(-250px);
+  }
+  
+  /* Header styling inside the cart */
+  .cartTab h2 {
+    padding: 20px; /* Inner spacing */
+    margin: 0; /* Removes default margin */
+    font-weight: 300; /* Light font weight */
+    display: block; /* Block-level element */
+  }
+  
+  /* Button container inside the cart */
+  .cartTab .btn {
+    display: grid; /* Grid layout for buttons */
+    grid-template-columns: repeat(2, 1fr); /* Two equally sized buttons */
+    padding: 10px; /* Inner spacing */
+  }
+  
+  /* Generic button styling */
+  .cartTab .btn button {
+    background-color: #64c46c; /* Yellow background for visibility */
+    border: none; /* Removes border */
+    font-weight: 500; /* Medium font weight */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  /* Close button styling */
+  .cartTab .btn .close {
+    background-color: #eee; /* Light gray background */
+    font-size: 20px; /* Large font size */
+  }
+  
+  /* Checkout button styling */
+  .cartTab .btn .checkOut {
+    font-size: 20px; /* Large font size */
+  }
+  
+  /* Product list inside the cart */
+  .cartTab .listCart .item img {
+    width: 100%; /* Full width for images */
+  }
+  
+  /* Layout for cart items */
+  .cartTab .listCart .item {
+    display: grid; /* Grid layout for items */
+    grid-template-columns: 70px 150px 50px 1fr; /* Image, name, quantity, and price */
+    gap: 10px; /* Spacing between columns */
+    text-align: center; /* Centers text */
+    align-items: center; /* Centers content vertically */
+    padding: 10px; /* Inner spacing */
+  }
+  
+  /* Styling for item names */
+  .cartTab .listCart .name {
+    font-style: normal; /* Default style */
+  }
+  
+  /* Styling for total prices */
+  .cartTab .listCart .totalPrice {
+    font-size: 20px; /* Medium font size */
+  }
+  
+  /* Quantity control styling */
+  .listCart .quantity {
+    display: flex; /* Enables flexbox layout */
+    justify-content: center; /* Centers content horizontally */
+    font-size: 20px;
+  }
+  
+  /* Styling for quantity buttons */
+  .listCart .quantity span {
+    display: inline-block; /* Inline but behaves like a block */
+    width: 24px; /* Fixed width */
+    height: 24px; /* Fixed height */
+    background-color: #eee; /* Light gray background */
+    color: #272626; /* Dark gray text */
+    border-radius: 50%; /* Circular shape */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 20px; /* Large font size */
+  }
+  
+  /* Transparent styling for inactive quantity button */
+  .listCart .quantity span:nth-child(2) {
+    background-color: transparent;
+    color: #eee; /* Matches background for invisibility */
+  }
+  
+  /* Styling for alternating item backgrounds */
+  .listCart .item:nth-child(even) {
+    background-color: rgba(107, 107, 107, 0.533); /* Light gray background with transparency */
+  }
+  
+  /* Enables scrolling for the cart item list */
+  .listCart {
+    overflow: auto; /* Allows scrolling when content overflows */
+  }
+  
+  /* Hides the scrollbar */
+  .listCart::-webkit-scrollbar {
+    width: 0;
+  }
+  
+  /* Adds rounded corners to cart images */
+  .cartTab .listCart img {
+    border-radius: 8px; /* Small corner rounding */
+  }
 
 .btn-primary{
-  background-color: #56ae6c;
+    background-color: #56ae6c;
 }
 
 
 .inquiry{
-  padding-bottom: 20px;
+    padding-bottom: 20px;
 }
